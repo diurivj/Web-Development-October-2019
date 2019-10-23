@@ -1,0 +1,132 @@
+const joss = {
+  name: 'Jose Carlos',
+  hobbies: ['tocar guitarra', 'jugar lol']
+}
+
+
+//let joss2 = new Object() //constructor
+
+/*const prop = 'name'
+
+console.log(joss[prop])*/
+
+joss['comidaFavorita'] = 'Ramen'
+
+console.log(joss)
+
+joss.comidaFavorita = 'Spaggetti'
+
+console.log(joss)
+
+delete joss.hobbies
+
+console.log(Object.entries(joss))
+
+console.log('edad' in joss)
+
+/* --------- */
+
+const beer = {
+    "id": 96,
+    "name": "Lumberjack Stout",
+    "tagline": "Blueberry Bacon Stout.",
+    "first_brewed": "12/2013",
+    "description": "Lumberjack Stout is an intense beast that took its inspriation from what an actual bona-fide lumberjack might have for breakfast. Flavours of molasses, chocolate, smoke, berry, coffee and more, with a low bitterness, leaning this beer firmly towards the malty side.",
+    "image_url": "https://images.punkapi.com/v2/keg.png",
+    "attenuation_level": 82,
+    "volume": {
+      "value": 20,
+      "unit": "litres"
+    },
+    "boil_volume": {
+      "value": 25,
+      "unit": "litres"
+    },
+    "method": {
+      "mash_temp": [
+        {
+          "temp": {
+            "value": 65,
+            "unit": "celsius"
+          },
+          "duration": 105
+        }
+      ],
+      "fermentation": {
+        "temp": {
+          "value": 21,
+          "unit": "celsius"
+        }
+      },
+      "twist": "Blueberries, maple syrup and coffee, then aged in ex Grain whisky casks. Maple Syrup: 50g at end. Blueberries: 100g at middle."
+    },
+    "ingredients": {
+      "malt": [
+        {
+          "name": "Extra Pale",
+          "amount": {
+            "value": 10.63,
+            "unit": "kilograms"
+          }
+        },
+        {
+          "name": "Carafa Special Malt Type 3",
+          "amount": {
+            "value": 1.25,
+            "unit": "kilograms"
+          }
+        },
+        {
+          "name": "Flaked Oats",
+          "amount": {
+            "value": 2.19,
+            "unit": "kilograms"
+          }
+        },
+        {
+          "name": "Smoked Malt",
+          "amount": {
+            "value": 0.63,
+            "unit": "kilograms"
+          }
+        },
+        {
+          "name": "Crystal",
+          "amount": {
+            "value": 1.25,
+            "unit": "kilograms"
+          }
+        }
+      ],
+      "hops": [
+        {
+          "name": "Galena",
+          "amount": {
+            "value": 36,
+            "unit": "grams"
+          },
+          "add": "start",
+          "attribute": "bitter"
+        },
+        {
+          "name": "Willamette",
+          "amount": {
+            "value": 37.5,
+            "unit": "grams"
+          },
+          "add": "end",
+          "attribute": "flavour"
+        }
+      ],
+      "yeast": "Wyeast 1272 - American Ale II™"
+    },
+    "food_pairing": [
+      "Maple syrup drizzled chocolate chip pancakes",
+      "Fried bacon with crispy honeycomb bits",
+      "Coffee cake"
+    ],
+    "brewers_tips": "Adding extra smoked malt will amp up the bacon character.",
+    "contributed_by": "Ali Skinner <AliSkinner>"
+  }
+
+  console.log(beer.ingredients.malt[2].amount.value)
