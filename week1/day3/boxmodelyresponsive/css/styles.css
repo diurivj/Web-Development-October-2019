@@ -1,0 +1,47 @@
+html {
+  font-size: 16px;
+}
+
+h1 {
+  border-bottom: 2px solid #BADA55;
+}
+
+div {
+  background-color: red;
+  height: 300px;
+  border: 3px solid rgb(23, 23, 23);
+  /* 
+  asignamos arriba y abajo con dos valores
+  o
+  asignamos valores a cada lado comenzando por la parte superior y siguiendo las manecillas de reloj
+   */
+  /* border-width: 2px 0;
+  border-radius: 50%; */
+  padding: 30px;
+  box-sizing: border-box;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+p {
+  font-size: 4em;
+}
+
+.text {
+  font-size: 4rem;
+}
+
+/* Mobile M */
+@media (min-width: 375px) {
+  div {
+    background-color: peru;
+  }
+}
+
+@media (min-width: 1024px) {
+  div {
+    background-color: rebeccapurple;
+    width: 48%;
+    border: 10px solid #FFF;
+  }
+}

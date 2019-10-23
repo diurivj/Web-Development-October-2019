@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav {
+  background-color: #31daFB;
+  position: relative;
+  height: 100px;
+}
+
+#brand-logo {
+  margin: 0;
+  position: absolute;
+  left: 10px;
+  top: 30px;
+}
+
+#amborguesa {
+  width: 40px;
+  position: absolute;
+  right: 10px;
+  top: 30px;
+}
+
+#main-menu {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+#ironhack-logo {
+  width: 30px;
+  margin-bottom: -5px;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 8px;
+  box-sizing: border-box;
+}
+
+li:hover {
+  cursor: pointer;
+  border-bottom: 2px solid slategray;
+}
+
+@media (min-width: 768px) {
+  #amborguesa {
+    display: none;
+  }
+
+  #main-menu {
+    display: block;
+  }
+}
