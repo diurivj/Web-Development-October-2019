@@ -1,0 +1,12 @@
+div {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-image: url(https://serebrisky.files.wordpress.com/2017/12/53.jpg?w=437&h=292);
+  transition: all 0.6s ease-in;
+}
+
+div:hover {
+  background-image: url(https://lh5.googleusercontent.com/-MXWEU6noyqE/AAAAAAAAAAI/AAAAAAAAABE/2KOqZ2ejUkM/photo.jpg);
+}

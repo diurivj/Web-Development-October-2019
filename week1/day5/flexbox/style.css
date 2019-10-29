@@ -1,0 +1,39 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: brown;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  /* align-content: flex-end; */
+}
+
+div {
+  width: 150px;
+  height: 150px;
+  background-color: wheat;
+}
+
+.blue {
+  background-color: blue;
+  order: 2;
+  align-self: flex-end;
+}
+
+.yellow {
+  background-color: yellow;
+  order: 1;
+}
+
+.peru {
+  background-color: peru;
+}
+
+.green {
+  background-color: green;
+
+}
