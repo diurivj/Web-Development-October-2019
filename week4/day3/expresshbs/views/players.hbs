@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="is-size-1">Players</h1>
+
+  <div class="columns is-mobile is-multiline is-centered ">
+    {{#each players}}
+    <div class="column is-4">
+      {{> playerCard this}}
+    </div>
+    {{/each}}
+  </div>
+</div>

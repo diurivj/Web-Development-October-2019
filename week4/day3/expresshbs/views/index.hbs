@@ -1,0 +1,28 @@
+{{#unless student}}
+<h1>Hola tu</h1>
+{{else}}
+<h1>Hola {{student}}</h1>
+{{/unless}}
+<p>Bienvenid@ al curso de {{bootcamp}}</p>
+
+
+<p>{{address.number}}</p>
+
+<a href="/players">
+  Players
+</a>
+<a href="/teams">
+  Teams
+</a>
+
+
+<div class="container">
+  {{#each cities}}
+  <div class="card">
+    {{!-- Si queremos acceder a otra propiedad del objeto o iterar otro arreglo, debemos salir del contexto (../[propiedad]) del arreglo actual dentro de each --}}
+    {{!-- <h2>{{../bootcamp}}Campus:</h2> --}}
+    <h2>{{@index}}Campus:</h2>
+    <p>{{this}}</p>
+  </div>
+  {{/each}}
+</div>
