@@ -1,0 +1,16 @@
+{{!-- esta chingon vea --}}
+<h2>Products</h2>
+
+<form action="/" method="GET">
+  <input type="text" name="q" placeholder="Search...">
+  <input type="submit" value="Search">
+</form>
+
+{{#each products as |product|}}
+<a href="/products/{{product._id}}">{{product.name}}</a>
+<br>
+{{/each}}
+
+{{#if loggedUser}}
+<a href="/products/new">Crear producto</a>
+{{/if}}

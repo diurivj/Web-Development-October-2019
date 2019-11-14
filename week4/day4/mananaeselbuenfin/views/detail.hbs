@@ -1,0 +1,17 @@
+<h2>{{name}}</h2>
+<img src="{{photoURL}}" alt="{{name}}">
+<p>{{description}}</p>
+<p>{{price}}</p>
+{{#each categories}}
+<p>{{this}}</p>
+{{/each}}
+
+{{#if err}}
+<h2>{{err}}</h2>
+{{/if}}
+
+<a href="/products/{{_id}}/edit">Editar</a>
+
+<a href="/">Products</a>
+
+<a href="/products/{{_id}}/delete">Delete</a>
