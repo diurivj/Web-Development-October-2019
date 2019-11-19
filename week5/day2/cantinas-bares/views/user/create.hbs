@@ -1,0 +1,65 @@
+<div class="row">
+  <br>
+  <form class="col s12" method="POST" action="/user/create">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="name" type="text" name="name">
+        <label for="name">Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="description" type="text" name="description">
+        <label for="description">Description</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select name="placeType">
+          <option value="" disabled selected>Choose your option</option>
+          <option value="cantina">Cantina</option>
+          <option value="bar">Bar</option>
+        </select>
+        <label>Place Type</label>
+      </div>
+      <div class="input-field col s6">
+        <div id='map'></div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="lng" type="text" name="location[coordinates][0]" hidden>
+        </div>
+        <div class="input-field col s6">
+          <input id="lat" type="text" name="location[coordinates][1]" hidden>
+        </div>
+        <div class="input-field col s6">
+          <input id="address" type="text" name="location[address]" hidden>
+        </div>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light red" type="submit">Create
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>
+
+<script>
+
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGl1cml2aiIsImEiOiJjanAxdjA2cTQwMGp1M2tvYzZmZGp3bWc3In0.4cZEyLkU2ikqx_wb4A1z8A';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+
+  const geoCoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  })
+
+  map.addControl(geoCoder)
+
+  geoCoder.on('results', (results) => {
+    document.querySelector('#address').value = results.features[0].place_name
+    document.querySelector('#lat').value = results.features[0].center[1];
+    document.querySelector('#lng').value = results.features[0].center[0];
+  })
+
+</script>

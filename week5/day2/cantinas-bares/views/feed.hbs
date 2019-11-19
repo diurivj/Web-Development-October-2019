@@ -1,0 +1,16 @@
+{{#each places as |place|}}
+<div class="row">
+  <div class="col s12 m6">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">{{place.name}}</span>
+        <p>{{place.description}}</p>
+      </div>
+      <div class="card-action">
+        <a href="/place/{{place._id}}">Details</a>
+        <a href="/users/{{place.author._id}}">Published: {{place.author.name}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
