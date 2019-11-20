@@ -1,0 +1,16 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+#characters {
+  display: flex;
+  flex-wrap: wrap; }
+
+.characters-li {
+  background-color: #e0e0eb;
+  list-style: none; }
+
+/*# sourceMappingURL=style.css.map */

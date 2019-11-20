@@ -1,0 +1,90 @@
+<h1>Personajes de Ironhack Mex</h1>
+<section id="characters-list"></section>
+
+<h2>Crear personaje</h2>
+
+<form id="create-form">
+  <input type="text" name="name" id="namecreate" placeholder="name">
+  <input type="text" name="weapon" id="weaponcreate" placeholder="weapon">
+  <input type="submit" value="Crear">
+</form>
+
+<br>
+
+<h2>Actualizar personaje</h2>
+<input type="text" name="id" id="characterId" placeholder="id del personaje">
+<button id="buscar-personaje">buscar personaje</button>
+
+<br>
+
+<form id="update-form">
+  <input type="text" name="name" id="nameupdate" placeholder="name">
+  <input type="text" name="weapon" id="weaponupdate" placeholder="weapon">
+  <input type="submit" value="Actualizar">
+</form>
+<script>
+
+  window.onload = async () => {
+    const charactersService = axios.create({
+      baseURL: "http://localhost:3000/api"
+    });
+
+    // obtenemos los personajes de la api
+    const {
+      data: { characters }
+    } = await charactersService.get("/characters");
+    // iteramos el arreglo de personajes
+    characters.forEach(character => {
+      // por cada personaje creamos un article y un anchor para que nos lleven a la vista de detalle de cada personaje
+      const article = document.createElement("article");
+      const anchor = document.createElement("a");
+      //al anchos le asignamos como prop href la url + el id
+      anchor.href = `http://localhost:3001/${character._id}`;
+      // agregamos al texto del a el nombre del personaje
+      anchor.innerText = character.name;
+      //hacemos append del anchor al article <article><a href=''>....
+      article.appendChild(anchor);
+      // agregamos el article a la vista
+      document.querySelector("#characters-list").appendChild(article);
+    });
+
+    // create Character
+    // recivimos el evento en la funcion `onsubmit` para prevenir el comportamiento por defecto del form
+    document.querySelector("#create-form").onsubmit = function (event) {
+      event.preventDefault()
+      // obtenemos la información de los valores de los inputs 
+      const name = document.querySelector('#namecreate').value
+      const weapon = document.querySelector('#weaponcreate').value
+      //usamos el servicio de axios para crear nuestro nuevo personaje en la api
+      charactersService.post('/characters', { name, weapon })
+        .then(res => console.log(res))
+        .catch(err => console.error(err))
+    };
+
+    // Buscamos el personaje por su id para obtener los valores actuales
+    document.querySelector('#buscar-personaje').onclick = () => {
+      // obtener el valor del input #characterId
+      console.log('click')
+      const id = document.querySelector('#characterId').value
+      //una vez que obtenemos el id del input buscamos al personaje para obtener los valores previos
+      charactersService(`/characters/${id}`)
+        .then(({ data: { name, weapon } }) => {
+          // una vez que la api nos responde con los valores los colocamos como valor dentro de los inputs para editar la información
+          document.querySelector('#nameupdate').value = name
+          document.querySelector('#weaponupdate').value = weapon
+        })
+    }
+
+    document.querySelector("#update-form").onsubmit = function (event) {
+      event.preventDefault()
+      //La actualización ocupa los valores dentro de los inputs de actualización para modificar sobre los elementos existentes y enviar el objeto completo.
+      const name = document.querySelector('#nameupdate').value
+      const weapon = document.querySelector('#weaponupdate').value
+      const id = document.querySelector('#characterId').value
+      charactersService
+        .patch(`/characters/${id}`, { name, weapon })
+        .then(res => console.log(res))
+
+    };
+  };
+</script>

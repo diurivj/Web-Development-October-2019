@@ -1,0 +1,16 @@
+<h1 id="character-name"></h1>
+<p id="character-weapon"></p>
+<button>Regresar</button>
+
+<script>
+  console.log("{{ characterId }}")
+  axios.get('http://localhost:3000/api/characters/{{characterId}}')
+    .then(({ data }) => {
+      document.querySelector('#character-name').innerText = data.name
+      document.querySelector('#character-weapon').innerText = data.weapon
+    })
+
+  document.querySelector('button').onclick = () => {
+    window.history.back()
+  }
+</script>

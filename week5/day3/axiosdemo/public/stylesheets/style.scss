@@ -1,0 +1,19 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#characters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.characters-li {
+  background-color: rgb(224, 224, 235);
+  list-style: none;
+}
