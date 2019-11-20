@@ -63,7 +63,8 @@ exports.loginProcess = async (req, res) => {
   if (
     bcrypt.compareSync(
       password,
-      /* contraseña desde el formulario */ user.password
+      /* contraseña desde el formulario */
+      user.password
       /* contraseña hasheada almacenada en el registro del usuario */
     )
   ) {
