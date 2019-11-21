@@ -1,0 +1,44 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+a {
+  color: #00B7FF;
+}
+
+#photos {
+  padding: 3rem;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.post {
+  border-radius: 5px;
+  background-color: white;
+  width: 40%;
+  overflow: hidden;
+}
+
+// .post p {
+
+// }
+
+// .post small {
+
+// }
+
+.post-image {
+  width: 100%;
+}

@@ -1,0 +1,9 @@
+<section id="photos">
+  {{#each photos}}
+  <article class="post">
+    <img src="{{this.imgPath}}" alt="{{this.title}}" class="post-image">
+    <p>{{this.title}}</p>
+    <small>{{this.description}}</small>
+  </article>
+  {{/each}}
+</section>
