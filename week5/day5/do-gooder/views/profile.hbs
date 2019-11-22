@@ -1,0 +1,88 @@
+<div class="needy-container">
+  <div class="card text-center" style="width: 18rem;">
+    <img src="{{user.photoURL}}" class="card-img-top" alt="{{user.username}}">
+    <div class="card-body">
+      <h5 class="card-title">{{user.username}}</h5>
+      <p class="card-text">
+        {{user.email}}
+      </p>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Edit
+      </button>
+    </div>
+  </div>
+  <div class="card text-center" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Favors</h5>
+      <p class="card-text">
+        {{#if user.favors.length}}
+        {{#each user.favors as |favor|}}
+        {{#if favor.isActive}}
+        <div class="alert alert-success" role="alert">
+          {{!-- no tiene sentido --}}
+          {{!-- hacemos ../ para salir del scope, y tener el contexto correcto --}}
+          <a style="color: #155724" href="/{{../user.role}}/favor/{{favor._id}}">
+            {{favor.description}}
+          </a>
+        </div>
+        {{else}}
+        <div class="alert alert-dark" role="alert">
+          {{favor.description}}
+        </div>
+        {{/if}}
+        {{/each}}
+        {{else}}
+        You don't have favors yet
+        {{/if}}
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/needy/profile" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="formGroupExampleInput">Username</label>
+            <input name="username" type="text" class="form-control" id="formGroupExampleInput" value="{{user.username}}"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput2">Telephone Number</label>
+            <input name="telephone_number" type="text" class="form-control" id="formGroupExampleInput2"
+              value="{{user.telephone_number}}" required>
+          </div>
+          <div class="form-group">
+            <div class="custom-file">
+              <input name="photoURL" type="file" class="custom-file-input" id="validatedCustomFile">
+              <label class="custom-file-label" for="validatedCustomFile">
+                <span>Choose file...</span>
+              </label>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector('input[name="photoURL"]').addEventListener('change', (e) => {
+    document.querySelector('label.custom-file-label span').innerText = e.target.files[0].name
+  })
+</script>

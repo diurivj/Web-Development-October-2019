@@ -1,0 +1,33 @@
+<div class="container-mio">
+  <h2>{{title}}</h2>
+  {{#if err}}
+  <div class="alert alert-danger" role="alert">
+    {{err}}
+  </div>
+  {{/if}}
+  <form action="{{action}}" method="POST" style="width: 50%">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        placeholder="Enter email" required>
+    </div>
+    {{#if register}}
+    <div class="form-group">
+      <label for="username">Name</label>
+      <input name="username" type="text" class="form-control" id="username" placeholder="Name" required>
+    </div>
+    {{/if}}
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+        required>
+    </div>
+    {{#if register}}
+    <div class="form-group">
+      <label for="number">Telephone Number</label>
+      <input placeholder="(55-1234-5678)" type="text" class="form-control" name="telephone_number" id="number" required>
+    </div>
+    {{/if}}
+    <button type="submit" class="btn btn-primary">{{title}}</button>
+  </form>
+</div>

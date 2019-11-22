@@ -1,0 +1,97 @@
+<div class="needy-container">
+  <div class="container ">
+    <div class="row">
+      <div class="col-sm">
+        <form action="/needy/ask" method="POST">
+          <input type="text" name="lngStarting" hidden>
+          <input type="text" name="latStarting" hidden>
+          <input type="text" name="lngEnding" hidden>
+          <input type="text" name="latEnding" hidden>
+
+          <div class="form-group">
+            No seas pendejo, escribe en los INPUTS del mapa
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Starting Point</label>
+            <input name="starting_point" type="text" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Starting Point Address...">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Ending Point</label>
+            <input name="ending_point" type="text" class="form-control" id="exampleInputPassword1"
+              placeholder="Ending Point Addres...">
+          </div>
+          <div class="form-group form-check">
+            <input name="round_trip" type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Round Trip</label>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea name="description" placeholder="Bring my keys" class="form-control"
+              id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Ask</button>
+        </form>
+      </div>
+      <div class="col-sm">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGl1cml2aiIsImEiOiJjanAxdjA2cTQwMGp1M2tvYzZmZGp3bWc3In0.4cZEyLkU2ikqx_wb4A1z8A';
+
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    zoom: 15
+  });
+
+  const directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+    controls: { profileSwitcher: false, profile: 'mapbox/driving-traffic', unit: 'metric' }
+  })
+
+  map.addControl(directions, 'top-left');
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const user_location = [
+        position.coords.longitude,
+        position.coords.latitude
+      ];
+      map.setCenter(user_location);
+    }, () => {
+      console.log('Error in the geolocation service.');
+    });
+  } else {
+    console.log('Browser does not support geolocation.');
+  }
+
+  const mapboxInputOrigin = document.querySelector('input[placeholder="Choose a starting place"]')
+  const myInputOrigin = document.querySelector('input[name="starting_point"]')
+  const mapboxInputDest = document.querySelector('input[placeholder="Choose destination"]')
+  const myInputDest = document.querySelector('input[name="ending_point"]')
+  const lngStarting = document.querySelector('input[name="lngStarting"]')
+  const latStarting = document.querySelector('input[name="latStarting"]')
+  const lngEnding = document.querySelector('input[name="lngEnding"]')
+  const latEnding = document.querySelector('input[name="latEnding"]')
+
+  directions.on('origin', ({ feature: { geometry: { coordinates } } }) => {
+    myInputOrigin.value = mapboxInputOrigin.value
+    lngStarting.value = coordinates[0]
+    latStarting.value = coordinates[1]
+  })
+
+  directions.on('destination', ({ feature: { geometry: { coordinates } } }) => {
+    myInputDest.value = mapboxInputDest.value
+    lngEnding.value = coordinates[0]
+    latEnding.value = coordinates[1]
+  })
+
+
+</script>

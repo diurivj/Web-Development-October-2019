@@ -1,0 +1,68 @@
+<div class="needy-container">
+  <div class="container ">
+    <div class="row">
+      <div class="col-sm">
+        <button type="button" class="btn btn-outline-danger">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <br>
+        <br>
+        <form action="/needy/favor/{{_id}}" method="POST">
+          <div class="form-group">
+            <h5>Favor:</h5>
+            <div class="alert alert-primary" role="alert">
+              {{description}}
+            </div>
+            <h5>Do-gooder:</h5>
+            <div class="alert alert-warning" role="alert">
+              {{do_gooder_id.username}}
+            </div>
+            <h5>Status:</h5>
+            {{#if isActive}}
+            <div class="alert alert-success" role="alert">
+              In progres...
+            </div>
+            {{else}}
+            <div class="alert alert-dark" role="alert">
+              Completed!
+            </div>
+            {{/if}}
+            <a class="btn btn-info" href="https://api.whatsapp.com/send?phone={{do_gooder_id.telephone_number}}"
+              target="_blank">Contactar
+              vía WhatsApp <i class="fab fa-whatsapp"></i></a>
+          </div>
+          <button type="submit" class="btn btn-outline-success">Done!</button>
+        </form>
+        <br>
+      </div>
+      <div class="col-sm">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZGl1cml2aiIsImEiOiJjanAxdjA2cTQwMGp1M2tvYzZmZGp3bWc3In0.4cZEyLkU2ikqx_wb4A1z8A';
+
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    zoom: 15
+  });
+
+  const directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken,
+    controls: { profileSwitcher: false, inputs: false, unit: 'metric' }
+  })
+
+  map.addControl(directions, 'top-left');
+
+  directions.setOrigin([{{ starting_point.coordinates }}])
+  directions.setDestination([{{ ending_point.coordinates }}])
+
+  document.querySelector('button.btn-outline-danger').addEventListener('click', () => {
+    window.history.back()
+  })
+
+</script>

@@ -1,0 +1,18 @@
+<div class="card text-center" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Active Favors</h5>
+    <p class="card-text">
+      {{#if actives.length}}
+      {{#each actives as |favor|}}
+      <div class="alert alert-success" role="alert">
+        <a style="color: #155724" href="/do-gooder/favor/{{favor._id}}">
+          {{favor.description}}
+        </a>
+      </div>
+      {{/each}}
+      {{/if}}
+      <div class="alert alert-dark" role="alert">
+        You don't have active favors
+      </div>
+  </div>
+</div>
