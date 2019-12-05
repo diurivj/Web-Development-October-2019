@@ -1,18 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import HomeContainer from './components/home/HomeContainer'
-import Nav from './components/styled-components/Navbar'
-import CharactersContainer from './components/characters/CharactersContainer'
-import CharacterDetail from './components/characters/CharactersDetail'
+import Menu from './components/Menu'
+import Detail from './components/Detail'
 
 const Routes = () => (
   <BrowserRouter>
-    <Nav />
-    <Switch>
-      <Route exact path="/" component={HomeContainer} />
-      <Route exact path="/characters" component={CharactersContainer} />
-      <Route exact path="/characters/:id" component={CharacterDetail} />
-    </Switch>
+    <Route path="/" component={Menu} />
+    <Route path="/:cca3" component={Detail} />
   </BrowserRouter>
 )
 
